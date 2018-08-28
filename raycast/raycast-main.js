@@ -153,10 +153,10 @@ const vectorFromOriginOfRayToCenterOfRect = obb.pos.subtract(rayCast.origin);
 
 function draw(){
     obb.addAngle(0.2);
-    // When an axis and the vector from the origin of the ray are parallel, then the result of dot product is zero. To avoid dividing by zero, use very small value instead.
-    const lengthBetweenOriginOfRayAndCenterOfRectProjectedOnXAxis = obb.rotatedXAxis.dot(vectorFromOriginOfRayToCenterOfRect) || NoDividingByZero;
+    // When slabs being tested and the vector from the origin of the ray are parallel (this means perpendicular to an axis), then the result of dot product is zero. To avoid dividing by zero, use a very small value instead.
+    const lengthBetweenOriginOfRayAndCenterOfRectProjectedOnXAxis = obb.rotatedXAxis.dot(vectorFromOriginOfRayToCenterOfRect);
     const lengthOfDirectionOfRayProjectedOnXAxis = obb.rotatedXAxis.dot(rayCast.direction) || NoDividingByZero;
-    const lengthBetweenOriginOfRayAndCenterOfRectProjectedOnYAxis = obb.rotatedYAxis.dot(vectorFromOriginOfRayToCenterOfRect) || NoDividingByZero;
+    const lengthBetweenOriginOfRayAndCenterOfRectProjectedOnYAxis = obb.rotatedYAxis.dot(vectorFromOriginOfRayToCenterOfRect);
     const lengthOfDirectionOfRayProjectedOnYAxis = obb.rotatedYAxis.dot(rayCast.direction) || NoDividingByZero;
 
     c.clearRect(0, 0, 500, 500);
